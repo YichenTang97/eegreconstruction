@@ -174,3 +174,5 @@ cython_debug/
 /reconstruction/pretrains/ldm/label2img/model.ckpt
 /reconstruction/pretrains/EEG/finetuned.pth
 /reconstruction/results/
+/experiments/
+reconstruction/code/wandb/
