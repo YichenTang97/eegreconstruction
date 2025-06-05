@@ -173,10 +173,11 @@ class cond_stage_model(nn.Module):
         self.eegnet = model
 
         #Explanation: The output of the EEGNet is batch_size x 1 x 512. We need to map to the expected context size of the LDM
-        #Therefore we use a 1x1 convolution that maps from depth 1 to 77
+        #Therefore we use a 1x1 convolution that maps from depth 1 to 10 (note: 77 from Guenther's original implmentation but it seems it was wrong - check time_embed_condition under UNetModel in dc_ldm.modules.diffusionmodules.openaimodel)
         #Note: As the EEGNet outputs a 512 dimensional vector, we avoid an extra linear mapping from 1024 to 512 (which is 0,5 million params!)
         self.channel_mapper = nn.Sequential(
-            nn.Conv1d(1, 77, 1, bias=True),
+            # nn.Conv1d(1, 77, 1, bias=True),
+            nn.Conv1d(1, 10, 1, bias=True),
         )
 
     def forward(self, x):
